@@ -19,10 +19,9 @@ engine = create_engine("mssql+pyodbc:///?odbc_connect=" + url, use_setinputsizes
 
 mask_columns = {
     'dbo.TableName1': ['ColumnName1', 'ColumnName2'],
-    'dbo.TableName2': ['ColumnName1', 'ColumnName2']
-}
+    'dbo.TableName2': ['ColumnName1', 'ColumnName2']}
 
-try:
+try: 
     connection = engine.connect()
     metadata = MetaData()
     metadata.reflect(bind=engine, schema="dbo")
