@@ -18,10 +18,11 @@ url = urllib.parse.quote(connection_string)
 engine = create_engine("mssql+pyodbc:///?odbc_connect=" + url, use_setinputsizes=False)
 
 mask_columns = {
-    'dbo.TableName1': ['ColumnName1', 'ColumnName2'],
-    'dbo.TableName2': ['ColumnName1', 'ColumnName2']}
+    'dbo.AspNetUsers': ['PasswordHash', 'SecurityStamp', 'Ein'],
+    'dbo.FinancialInstitutions': ['Ein', 'Tins']
+}
 
-try: 
+try:
     connection = engine.connect()
     metadata = MetaData()
     metadata.reflect(bind=engine, schema="dbo")
@@ -38,7 +39,8 @@ try:
         if table in mask_columns:
             for column in mask_columns[table]:
                 if column in df.columns:
-                    df[column] = df[column].apply(lambda x: 'masked' if x is not None and x != '' else x)
+                    #print(df[column])
+                    df[column] = df[column].apply(lambda x: 'masked' if x != '' else x)
         df_dict[table] = df
 
     with pd.ExcelWriter('tsbci_db_export.xlsx', engine='xlsxwriter') as writer:
