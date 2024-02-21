@@ -18,8 +18,8 @@ url = urllib.parse.quote(connection_string)
 engine = create_engine("mssql+pyodbc:///?odbc_connect=" + url, use_setinputsizes=False)
 
 mask_columns = {
-    'dbo.AspNetUsers': ['PasswordHash', 'SecurityStamp', 'Ein'],
-    'dbo.FinancialInstitutions': ['Ein', 'Tins']
+    'dbo.TableName1': ['Column1', 'Column2', 'Column3'],
+    'dbo.TableName2': ['Column1', 'Column2']
 }
 
 try:
