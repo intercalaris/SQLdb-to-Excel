@@ -43,7 +43,7 @@ try:
                     df[column] = df[column].apply(lambda x: 'masked' if x != '' else x)
         df_dict[table] = df
 
-    with pd.ExcelWriter('tsbci_db_export.xlsx', engine='xlsxwriter') as writer:
+    with pd.ExcelWriter('database_export.xlsx', engine='xlsxwriter') as writer:
         for sheet_name, df in df_dict.items():
             df.to_excel(writer, sheet_name=sheet_name[4:], index=False)
 
