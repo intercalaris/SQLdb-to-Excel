@@ -4,7 +4,7 @@ import pyodbc
 import pandas as pd
 
 server = "11.111.11.111"
-database = "dbname_staging"
+database = "dbname"
 username = "db_username"
 password = "db_password"
 
